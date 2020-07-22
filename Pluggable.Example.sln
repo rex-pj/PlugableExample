@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pluggable.Example", "PluggableDemo\Pluggable.Example.csproj", "{8F6E52E4-6A56-4755-A613-FB1D2263F849}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pluggable.Example", "Pluggable.Example\Pluggable.Example.csproj", "{8F6E52E4-6A56-4755-A613-FB1D2263F849}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{E729D285-7B09-41EC-8E80-7D32A42D96BF}"
 EndProject
