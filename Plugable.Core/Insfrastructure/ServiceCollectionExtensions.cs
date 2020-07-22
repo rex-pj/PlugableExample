@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Pluggable.Core.Contracts;
-using Pluggable.Core.Models;
+using Plugable.Core.Contracts;
+using Plugable.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pluggable.Core.Insfrastructure
+namespace Plugable.Core.Insfrastructure
 {
     public static class ServiceCollectionExtensions
     {

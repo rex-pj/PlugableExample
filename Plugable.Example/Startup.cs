@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Pluggable.Core;
-using Pluggable.Core.Insfrastructure;
-using Pluggable.Core.Models;
+using Plugable.Core;
+using Plugable.Core.Insfrastructure;
+using Plugable.Core.Models;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Pluggable.Example
+namespace Plugable.Example
 {
     public class Startup
     {

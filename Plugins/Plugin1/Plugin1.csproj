@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Pluggable.Core\Pluggable.Core.csproj" />
+		<ProjectReference Include="..\..\Plugable.Core\Plugable.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Pluggable.Core.Contracts;
-using Pluggable.Core.Models;
+using Plugable.Core.Contracts;
+using Plugable.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pluggable.Core.Insfrastructure
+namespace Plugable.Core.Insfrastructure
 {
     public static class ApplicationBuilderExtensions
     {

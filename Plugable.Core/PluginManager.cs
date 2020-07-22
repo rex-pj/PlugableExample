@@ -1,10 +1,10 @@
-﻿using Pluggable.Core.Models;
+﻿using Plugable.Core.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
 
-namespace Pluggable.Core
+namespace Plugable.Core
 {
     public class PluginManager
     {

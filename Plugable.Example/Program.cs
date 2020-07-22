@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Pluggable.Example
+namespace Plugable.Example
 {
     public class Program
     {

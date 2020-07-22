@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pluggable.Core
+namespace Plugable.Core
 {
     public class PluginViewFinder : IViewLocationExpander
     {
@@ -31,7 +31,7 @@ namespace Pluggable.Core
         {
             var controller = context.ActionContext.ActionDescriptor.DisplayName;
             var moduleName = controller.Split('.')[2];
-            if (moduleName != "Pluggable.Example")
+            if (moduleName != "Plugable.Example")
             {
                 context.Values[_moduleKey] = moduleName;
             }

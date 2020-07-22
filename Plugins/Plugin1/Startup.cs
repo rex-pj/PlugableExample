@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Pluggable.Core.Contracts;
+using Plugable.Core.Contracts;
 
 namespace Plugin1
 {

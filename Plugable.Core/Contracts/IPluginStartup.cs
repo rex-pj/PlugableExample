@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Pluggable.Core.Contracts
+namespace Plugable.Core.Contracts
 {
     public interface IPluginStartup
     {
