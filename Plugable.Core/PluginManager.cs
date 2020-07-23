@@ -12,6 +12,7 @@ namespace Plugable.Core
         {
             var moduleRootFolder = new DirectoryInfo(pluginsPath);
             var moduleFolders = moduleRootFolder.GetDirectories();
+
             var plugins = new List<PluginInfo>();
 
             foreach (var moduleFolder in moduleFolders)

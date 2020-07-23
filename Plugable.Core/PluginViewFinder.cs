@@ -1,11 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Plugable.Core
 {
     public class PluginViewFinder : IViewLocationExpander
     {
+        private readonly Assembly _assembly;
+        public PluginViewFinder(Assembly assembly)
+        {
+            _assembly = assembly;
+        }
+
         private const string _moduleKey = "module";
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
@@ -17,8 +24,8 @@ namespace Plugable.Core
                 {
                     var moduleViewLocations = new string[]
                     {
-                        "../../Plugins/Plugin1/" + "Home" + "/Views/{1}/{0}.cshtml",
-                        "../../Plugins/Plugin1/" + "Home"  + "/Views/Shared/{0}.cshtml"
+                        "../../Plugins/Plugin1/Views/{1}/{0}.cshtml",
+                        "../../Plugins/Plugin1/Views/Shared/{0}.cshtml"
                     };
 
                     viewLocations = moduleViewLocations.Concat(viewLocations);

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Plugable.Core;
@@ -26,12 +25,15 @@ namespace Plugable.Example
             var rootPath = Path.Combine(Directory.GetParent(_webHostEnvironment.ContentRootPath).FullName, "Plugins");
             _plugins = new PluginManager().LoadPlugins(rootPath);
 
-            services.Configure<RazorViewEngineOptions>(options =>
-            {
-                options.ViewLocationExpanders.Add(new PluginViewFinder());
-            });
+            var mvcBuilder = services.AddPlugins(_plugins);
+            //mvcBuilder.AddRazorOptions(options =>
+            //{
+            //    foreach (var plugin in _plugins)
+            //    {
+            //        options.ViewLocationExpanders.Add(new PluginViewFinder(plugin.Assembly));
+            //    }
+            //});
 
-            services.AddPlugins(_plugins);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

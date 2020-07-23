@@ -9,26 +9,23 @@ namespace Plugable.Core.Insfrastructure
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddPlugins(this IServiceCollection services, IList<PluginInfo> plugins)
+        public static IMvcBuilder AddPlugins(this IServiceCollection services, IList<PluginInfo> plugins)
         {
-            var mvcBuilder = services.AddMvc();
-            mvcBuilder.AddRazorOptions(o =>
-            {
-            });
-
+            var mvcBuilder = services.AddControllersWithViews();
+            var pluginStartupInterfaceType = typeof(IPluginStartup);
             foreach (var module in plugins)
             {
                 mvcBuilder.AddApplicationPart(module.Assembly);
 
-                var pluginStartupType = module.Assembly.GetTypes().Where(x => typeof(IPluginStartup).IsAssignableFrom(x))
-                    .FirstOrDefault();
-
-                if (pluginStartupType != null && pluginStartupType != typeof(IPluginStartup))
+                var pluginStartupType = module.Assembly.GetTypes().FirstOrDefault(x => pluginStartupInterfaceType.IsAssignableFrom(x));
+                if (pluginStartupType != null && pluginStartupType != pluginStartupInterfaceType)
                 {
-                    var moduleInitializer = (IPluginStartup)Activator.CreateInstance(pluginStartupType);
+                    var moduleInitializer = Activator.CreateInstance(pluginStartupType) as IPluginStartup;
                     moduleInitializer.ConfigureServices(services);
                 }
             }
+
+            return mvcBuilder;
         }
     }
 }

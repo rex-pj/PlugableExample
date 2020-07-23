@@ -13,7 +13,7 @@ namespace Plugable.Core.Contracts
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
+            app.UseStaticFiles();
         }
     }
 }

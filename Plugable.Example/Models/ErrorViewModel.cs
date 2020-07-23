@@ -1,6 +1,4 @@
-using System;
-
-namespace Plugin1.Models
+namespace Plugable.Example.Models
 {
     public class ErrorViewModel
     {

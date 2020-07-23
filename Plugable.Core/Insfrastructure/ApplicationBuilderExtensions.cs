@@ -12,14 +12,13 @@ namespace Plugable.Core.Insfrastructure
     {
         public static void UsePlugins(this IApplicationBuilder app, IWebHostEnvironment env, IList<PluginInfo> plugins)
         {
+            var pluginStartupInterfaceType = typeof(IPluginStartup);
             foreach (var module in plugins)
             {
-                var pluginStartupType = module.Assembly.GetTypes().Where(x => typeof(IPluginStartup).IsAssignableFrom(x))
-                    .FirstOrDefault();
-
-                if (pluginStartupType != null && pluginStartupType != typeof(IPluginStartup))
+                var pluginStartupType = module.Assembly.GetTypes().FirstOrDefault(x => pluginStartupInterfaceType.IsAssignableFrom(x));
+                if (pluginStartupType != null && pluginStartupType != pluginStartupInterfaceType)
                 {
-                    var moduleInitializer = (IPluginStartup)Activator.CreateInstance(pluginStartupType);
+                    var moduleInitializer = Activator.CreateInstance(pluginStartupType) as IPluginStartup;
                     moduleInitializer.Configure(app, env);
                 }
             }
