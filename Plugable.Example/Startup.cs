@@ -1,12 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Plugable.Core;
 using Plugable.Core.Insfrastructure;
 using Plugable.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Plugable.Example
 {
@@ -26,14 +30,9 @@ namespace Plugable.Example
             _plugins = new PluginManager().LoadPlugins(rootPath);
 
             var mvcBuilder = services.AddPlugins(_plugins);
-            //mvcBuilder.AddRazorOptions(options =>
-            //{
-            //    foreach (var plugin in _plugins)
-            //    {
-            //        options.ViewLocationExpanders.Add(new PluginViewFinder(plugin.Assembly));
-            //    }
-            //});
 
+            //var serviceProvider = services.BuildServiceProvider();
+            //_webHostEnvironment.WebRootFileProvider = CreateCompositeFileProvider(serviceProvider);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -55,6 +54,19 @@ namespace Plugable.Example
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private IFileProvider CreateCompositeFileProvider(IServiceProvider serviceProvider)
+        {
+            IFileProvider[] fileProviders = new IFileProvider[] {
+                serviceProvider.GetService<IWebHostEnvironment>().WebRootFileProvider
+            };
+
+            return new CompositeFileProvider(
+              fileProviders.Concat(
+                _plugins.Select(x => x.Assembly).Select(a => new EmbeddedFileProvider(a, a.GetName().Name))
+              )
+            );
         }
     }
 }
