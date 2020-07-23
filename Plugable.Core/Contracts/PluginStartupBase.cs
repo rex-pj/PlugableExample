@@ -8,12 +8,10 @@ namespace Plugable.Core.Contracts
     {
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
         }
 
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseStaticFiles();
         }
     }
 }

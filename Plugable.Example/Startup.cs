@@ -55,18 +55,5 @@ namespace Plugable.Example
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-
-        private IFileProvider CreateCompositeFileProvider(IServiceProvider serviceProvider)
-        {
-            IFileProvider[] fileProviders = new IFileProvider[] {
-                serviceProvider.GetService<IWebHostEnvironment>().WebRootFileProvider
-            };
-
-            return new CompositeFileProvider(
-              fileProviders.Concat(
-                _plugins.Select(x => x.Assembly).Select(a => new EmbeddedFileProvider(a, a.GetName().Name))
-              )
-            );
-        }
     }
 }
